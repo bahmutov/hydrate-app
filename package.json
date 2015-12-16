@@ -1,0 +1,31 @@
+{
+  "name": "hydrate-app",
+  "version": "1.0.0",
+  "description": "Quick app pre-loading using saved HTML snapshot",
+  "main": "hydrate-app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/hydrate-app.git"
+  },
+  "files": [
+    "hydrate-app.js"
+  ],
+  "keywords": [
+    "web",
+    "app",
+    "web",
+    "application",
+    "performance",
+    "load",
+    "loader"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/hydrate-app/issues"
+  },
+  "homepage": "https://github.com/bahmutov/hydrate-app#readme"
+}
