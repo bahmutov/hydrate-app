@@ -56,7 +56,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict'
 
-	var tinyToast = __webpack_require__(1)
+	var display = (function initDisplay () {
+	  var tinyToast = __webpack_require__(1)
+	  var tinyOverlay = __webpack_require__(2)
+
+	  return {
+	    message: tinyToast,
+	    overlay: {
+	      show: function show (text) {
+	        tinyOverlay.show()
+	        if (text) {
+	          tinyToast.show(text)
+	        }
+	      },
+	      hide: tinyOverlay.hide
+	    }
+	  }
+	}())
 
 	function noop () {}
 
@@ -69,53 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  var dryId = formDrySelectorId(selectId)
 
-	  // TODO factor out into separate module
-	  var display = (function initOverlay () {
-	    var overlay
 
-	    function createOverlay () {
-	      if (overlay) {
-	        return
-	      }
-
-	      overlay = document.createElement('div')
-	      var style = overlay.style
-	      style.width = '100%'
-	      style.height = '100%'
-	      style.opacity = 0.5
-	      style.position = 'fixed'
-	      style.left = 0
-	      style.top = 0
-	      style.backgroundColor = 'hsla(187, 100%, 42%, 0.12)'
-	      document.body.appendChild(overlay)
-	    }
-
-	    function closeOverlay () {
-	      if (overlay) {
-	        document.body.removeChild(overlay)
-	        overlay = null
-	      }
-	    }
-
-	    return {
-	      message: tinyToast,
-	      overlay: {
-	        show: function show (text) {
-	          createOverlay()
-	          if (text) {
-	            tinyToast.show(text)
-	          }
-	        },
-	        hide: function hide (timeoutMs) {
-	          if (timeoutMs) {
-	            setTimeout(closeOverlay, timeoutMs)
-	          } else {
-	            closeOverlay()
-	          }
-	        }
-	      }
-	    }
-	  }())
 
 	  /* global localStorage */
 
@@ -280,6 +250,57 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = tinyToastApi
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	'use strict'
+
+	var tinyOverlay
+
+	function createDom () {
+	  if (tinyOverlay) {
+	    return tinyOverlay
+	  }
+
+	  tinyOverlay = document.createElement('div')
+	  var style = tinyOverlay.style
+	  style.width = '100%'
+	  style.height = '100%'
+	  style.opacity = 0.5
+	  style.position = 'fixed'
+	  style.left = 0
+	  style.top = 0
+	  style.backgroundColor = 'hsla(187, 100%, 42%, 0.12)'
+	  document.body.appendChild(tinyOverlay)
+	  return tinyOverlay
+	}
+
+	function close () {
+	  if (tinyOverlay) {
+	    document.body.removeChild(tinyOverlay)
+	    tinyOverlay = null
+	  }
+	}
+
+	function maybeDefer (fn, timeoutMs) {
+	  if (timeoutMs) {
+	    setTimeout(fn, timeoutMs)
+	  } else {
+	    fn()
+	  }
+	}
+
+	var tinyOverlayApi = {
+	  show: createDom,
+	  hide: function (timeoutMs) {
+	    maybeDefer(close, timeoutMs)
+	  }
+	}
+
+	module.exports = tinyOverlayApi
 
 
 /***/ }

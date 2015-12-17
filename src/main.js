@@ -1,6 +1,22 @@
 'use strict'
 
-var tinyToast = require('tiny-toast')
+var display = (function initDisplay () {
+  var tinyToast = require('tiny-toast')
+  var tinyOverlay = require('tiny-overlay')
+
+  return {
+    message: tinyToast,
+    overlay: {
+      show: function show (text) {
+        tinyOverlay.show()
+        if (text) {
+          tinyToast.show(text)
+        }
+      },
+      hide: tinyOverlay.hide
+    }
+  }
+}())
 
 function noop () {}
 
@@ -12,54 +28,6 @@ function getBottle (selectId, verbose, verboseUi) {
   }
 
   var dryId = formDrySelectorId(selectId)
-
-  // TODO factor out into separate module
-  var display = (function initOverlay () {
-    var overlay
-
-    function createOverlay () {
-      if (overlay) {
-        return
-      }
-
-      overlay = document.createElement('div')
-      var style = overlay.style
-      style.width = '100%'
-      style.height = '100%'
-      style.opacity = 0.5
-      style.position = 'fixed'
-      style.left = 0
-      style.top = 0
-      style.backgroundColor = 'hsla(187, 100%, 42%, 0.12)'
-      document.body.appendChild(overlay)
-    }
-
-    function closeOverlay () {
-      if (overlay) {
-        document.body.removeChild(overlay)
-        overlay = null
-      }
-    }
-
-    return {
-      message: tinyToast,
-      overlay: {
-        show: function show (text) {
-          createOverlay()
-          if (text) {
-            tinyToast.show(text)
-          }
-        },
-        hide: function hide (timeoutMs) {
-          if (timeoutMs) {
-            setTimeout(closeOverlay, timeoutMs)
-          } else {
-            closeOverlay()
-          }
-        }
-      }
-    }
-  }())
 
   /* global localStorage */
 
