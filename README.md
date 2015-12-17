@@ -6,6 +6,9 @@
 [![Build status][hydrate-app-ci-image] ][hydrate-app-ci-url]
 [![semantic-release][semantic-image] ][semantic-url]
 
+See Vue.js [demo](http://glebbahmutov.com/hydrate-vue-todo/) and its 
+[source](https://github.com/bahmutov/hydrate-vue-todo)
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
