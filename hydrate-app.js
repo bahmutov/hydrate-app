@@ -112,10 +112,18 @@ function getBottle (selectId, verbose, verboseUi) {
       }
     },
     // saves HTML snapshot for a given module
-    refill: function refill () {
-      var html = document.getElementById(selectId).outerHTML
-      localStorage.setItem(storageId, html)
-      log('poured', selectId, html.substr(0, 20))
+    refill: function refill (defer) {
+      function refillBottle () {
+        var html = document.getElementById(selectId).outerHTML
+        localStorage.setItem(storageId, html)
+        log('poured', selectId, html.substr(0, 20))
+      }
+
+      if (defer) {
+        setTimeout(refillBottle, 0)
+      } else {
+        refillBottle()
+      }
       // if (verboseUi) {
       //   display.message.show('Saved application UI')
       //   display.message.hide(1000)

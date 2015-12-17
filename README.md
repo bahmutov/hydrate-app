@@ -44,8 +44,11 @@ has only a few methods for saving, loading and updating the HTML snapshot. The t
 most important ones to call from your application are:
 
 * `bottle.drink()` - call when your application has initialized and rendered itself.
-* `bottle.refill()` - call every time you want to take DOM snapshot. This snapshot
+* `bottle.refill(defer)` - call every time you want to take DOM snapshot. This snapshot
   will be rendered on the next page load.
+
+The argument `defer` postpones the refill by scheduling it on the event queue - for
+some frameworks this allows to actually update the DOM.
 
 ## Details
 
