@@ -5,6 +5,7 @@
 
 [![Build status][hydrate-app-ci-image] ][hydrate-app-ci-url]
 [![semantic-release][semantic-image] ][semantic-url]
+[![manpm](https://img.shields.io/badge/manpm-%E2%9C%93-3399ff.svg)](https://github.com/bahmutov/manpm)
 
 See Vue.js [demo](http://glebbahmutov.com/hydrate-vue-todo/) and its 
 [source](https://github.com/bahmutov/hydrate-vue-todo)
