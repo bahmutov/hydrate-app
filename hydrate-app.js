@@ -177,12 +177,14 @@ function getBottle (selectId, verbose, verboseUi) {
   var id = findAttribute(lastScript.attributes, 'id') || 'app'
   var verbose = findAttribute(lastScript.attributes, 'verbose') === 'true'
   var verboseUi = findAttribute(lastScript.attributes, 'verbose-ui') === 'true'
-  var shouldHydrateName = findAttribute(lastScript.attributes, 'on') || 'hydrate'
-  var shouldHydrate = window[shouldHydrateName]
 
   var bottle = getBottle(id, verbose, verboseUi)
-  if (!shouldHydrate) {
-    bottle.open = bottle.drink = noop
+
+  var shouldHydrateName = findAttribute(lastScript.attributes, 'on')
+  if (shouldHydrateName) {
+    if (!window[shouldHydrateName]) {
+      bottle.open = bottle.drink = noop
+    }
   }
 
   bottle.open()

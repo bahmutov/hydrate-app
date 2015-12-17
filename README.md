@@ -9,6 +9,32 @@
 See Vue.js [demo](http://glebbahmutov.com/hydrate-vue-todo/) and its 
 [source](https://github.com/bahmutov/hydrate-vue-todo)
 
+## Install
+
+`npm install --save hydrate-app`
+
+Include the script **right after the web app element** - this is important to prevent
+the content after the element from shifting.
+
+```html
+<div id="myApp">...</div>
+<script src="./node_modules/hydrate-app/hydrate-app.js"
+  id="myApp"
+  verbose="true"
+  on="hydrate"
+  verbose-ui="true"></script>
+```
+
+## API
+
+* `id` - the ID of the web application element to replace
+* `verbose` - if set to "true" prints console log messages
+* `verbose-ui` - show user popups
+* `on` - optional. If exists and set to string `<name>`, 
+    the `hydrate-app` factory function will look for `window[<name>]` flag
+    to decide if it needs to hydrate. A good way to compare normal startup
+    vs hydrated.
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
