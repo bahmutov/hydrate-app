@@ -99,10 +99,12 @@ function getBottle (selectId, verbose, verboseUi) {
 
   /* global localStorage */
 
+  var storageId = 'bottle-' + selectId
+
   return {
     // clears any saved HTML
     recycle: function recycle () {
-      localStorage.removeItem(selectId)
+      localStorage.removeItem(storageId)
       log('removed HTML from localStorage')
       if (verboseUi) {
         display.message.show('Cleared storage')
@@ -112,8 +114,8 @@ function getBottle (selectId, verbose, verboseUi) {
     // saves HTML snapshot for a given module
     refill: function refill () {
       var html = document.getElementById(selectId).outerHTML
-      localStorage.setItem(selectId, html)
-      log('poured', selectId, html)
+      localStorage.setItem(storageId, html)
+      log('poured', selectId, html.substr(0, 20))
       // if (verboseUi) {
       //   display.message.show('Saved application UI')
       //   display.message.hide(1000)
@@ -128,7 +130,7 @@ function getBottle (selectId, verbose, verboseUi) {
         display.overlay.show('Web application is loading ...')
       }
 
-      var html = localStorage.getItem(selectId)
+      var html = localStorage.getItem(storageId)
       if (html) {
         html = html.replace('id="' + selectId + '"',
           'id="' + dryId + '"')

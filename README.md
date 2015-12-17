@@ -46,6 +46,11 @@ most important ones to call from your application are:
 * `bottle.refill()` - call every time you want to take DOM snapshot. This snapshot
   will be rendered on the next page load.
 
+## Details
+
+You can find the current (if any) HTML snapshot in the localStorage under `bottle-` + ID
+key. If you want to erase the current snapshot, you can use `bottle.recycle()` method.
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
