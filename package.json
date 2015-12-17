@@ -1,20 +1,23 @@
 {
   "name": "hydrate-app",
   "description": "Quick app pre-loading using saved HTML snapshot",
-  "main": "hydrate-app.js",
+  "main": "src/main.js",
   "version": "0.0.0-semantic-release",
   "scripts": {
     "test": "npm run lint",
-    "lint": "standard *.js",
+    "lint": "standard *.js src/*.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "commit": "commit-wizard"
+    "commit": "commit-wizard",
+    "build": "webpack --verbose",
+    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/bahmutov/hydrate-app.git"
   },
   "files": [
-    "hydrate-app.js"
+    "dist",
+    "src"
   ],
   "keywords": [
     "web",
@@ -34,15 +37,21 @@
   "devDependencies": {
     "pre-git": "3.1.1",
     "semantic-release": "^4.3.5",
-    "standard": "5.4.1"
+    "standard": "5.4.1",
+    "tiny-toast": "1.0.0",
+    "webpack": "1.12.9"
   },
   "config": {
     "pre-git": {
-      "commit-msg": ["simple"],
+      "commit-msg": [
+        "simple"
+      ],
       "pre-commit": [
         "npm run lint"
       ],
-      "pre-push": [],
+      "pre-push": [
+        "npm run size"
+      ],
       "post-commit": [],
       "post-merge": []
     }

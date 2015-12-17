@@ -1,5 +1,7 @@
 'use strict'
 
+var tinyToast = require('tiny-toast')
+
 function noop () {}
 
 function getBottle (selectId, verbose, verboseUi) {
@@ -13,7 +15,7 @@ function getBottle (selectId, verbose, verboseUi) {
 
   // TODO factor out into separate module
   var display = (function initOverlay () {
-    var overlay, message
+    var overlay
 
     function createOverlay () {
       if (overlay) {
@@ -32,26 +34,6 @@ function getBottle (selectId, verbose, verboseUi) {
       document.body.appendChild(overlay)
     }
 
-    function createMessage (text) {
-      var style
-      if (!message) {
-        message = document.createElement('h3')
-        style = message.style
-        style.color = '#333'
-        style.position = 'fixed'
-        style.bottom = '0em'
-        style.right = '1em'
-        style.backgroundColor = '#7FFFD4'
-        style.borderRadius = '5px'
-        style.borderWidth = '1px'
-        style.borderColor = '#73E1BC'
-        style.borderStyle = 'solid'
-        style.padding = '1em 2em'
-        document.body.appendChild(message)
-      }
-      message.textContent = text
-    }
-
     function closeOverlay () {
       if (overlay) {
         document.body.removeChild(overlay)
@@ -59,31 +41,13 @@ function getBottle (selectId, verbose, verboseUi) {
       }
     }
 
-    function closeMessage () {
-      if (message) {
-        document.body.removeChild(message)
-        message = null
-      }
-    }
-
     return {
-      message: {
-        show: function show (text) {
-          createMessage(text)
-        },
-        hide: function (timeoutMs) {
-          if (timeoutMs) {
-            setTimeout(closeMessage, timeoutMs)
-          } else {
-            closeMessage()
-          }
-        }
-      },
+      message: tinyToast,
       overlay: {
         show: function show (text) {
           createOverlay()
           if (text) {
-            createMessage(text)
+            tinyToast.show(text)
           }
         },
         hide: function hide (timeoutMs) {
@@ -170,7 +134,7 @@ function getBottle (selectId, verbose, verboseUi) {
   }
 }
 
-!(function initBottle () {
+var bottle = (function initBottle () {
   function findAttribute (attributes, name) {
     var found
     Array.prototype.some.call(attributes, function (attr) {
@@ -197,7 +161,8 @@ function getBottle (selectId, verbose, verboseUi) {
       bottle.open = bottle.drink = noop
     }
   }
-
-  bottle.open()
-  window.bottle = bottle
+  return bottle
 }())
+
+bottle.open()
+module.exports = bottle

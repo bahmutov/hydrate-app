@@ -24,7 +24,7 @@ the content after the element from shifting.
 
 ```html
 <div id="myApp">...</div>
-<script src="./node_modules/hydrate-app/hydrate-app.js"
+<script src="dist/hydrate-app.js"
   id="myApp"
   verbose="true"
   on="hydrate"
@@ -59,6 +59,20 @@ some frameworks this allows to actually update the DOM.
 
 You can find the current (if any) HTML snapshot in the localStorage under `bottle-` + ID
 key. If you want to erase the current snapshot, you can use `bottle.recycle()` method.
+
+The hydration script removes CSS class name "hidden" from the web application's element.
+This is useful to remove the flash of the template and flicker. I recommend
+
+```html
+<style>
+.hidden {
+  display: none;
+}
+</style>
+<body>
+  <div id="myApp" class="hidden">...</div>
+</body>
+```
 
 ### Small print
 
