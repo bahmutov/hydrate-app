@@ -164,7 +164,7 @@ function getBottle (selectId, verbose, verboseUi) {
       }
       var appEl = document.getElementById(selectId)
       appEl.style.visibility = ''
-      appEl.style.display = 'initial'
+      appEl.style.display = ''
       appEl.classList.remove('hidden')
     }
   }
