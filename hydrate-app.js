@@ -116,7 +116,7 @@ function getBottle (selectId, verbose, verboseUi) {
       function refillBottle () {
         var html = document.getElementById(selectId).outerHTML
         localStorage.setItem(storageId, html)
-        log('poured', selectId, html.substr(0, 20))
+        log('poured', selectId, html.substr(0, 20) + '...')
       }
 
       if (defer) {
@@ -165,6 +165,7 @@ function getBottle (selectId, verbose, verboseUi) {
       var appEl = document.getElementById(selectId)
       appEl.style.visibility = ''
       appEl.style.display = 'initial'
+      appEl.classList.remove('hidden')
     }
   }
 }
