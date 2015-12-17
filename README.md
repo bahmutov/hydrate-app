@@ -7,7 +7,9 @@
 [![semantic-release][semantic-image] ][semantic-url]
 [![manpm](https://img.shields.io/badge/manpm-%E2%9C%93-3399ff.svg)](https://github.com/bahmutov/manpm)
 
-See this tiny [demo](http://glebbahmutov.com/hydrate-vue-todo/) and its 
+[demo](http://glebbahmutov.com/hydrate-app/)
+
+See a larger Vue.js [demo](http://glebbahmutov.com/hydrate-vue-todo/) and its 
 [source](https://github.com/bahmutov/hydrate-vue-todo). 
 See the hydration in action on my own website [glebbahmutov.com](http://glebbahmutov.com/),
 notice how the list of projects when you

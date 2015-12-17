@@ -85,8 +85,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  var dryId = formDrySelectorId(selectId)
 
-
-
 	  /* global localStorage */
 
 	  var storageId = 'bottle-' + selectId
