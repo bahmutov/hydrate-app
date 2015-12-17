@@ -27,13 +27,24 @@ the content after the element from shifting.
 
 ## API
 
+### Script attributes
+
 * `id` - the ID of the web application element to replace
 * `verbose` - if set to "true" prints console log messages
 * `verbose-ui` - show user popups
 * `on` - optional. If exists and set to string `<name>`, 
-    the `hydrate-app` factory function will look for `window[<name>]` flag
-    to decide if it needs to hydrate. A good way to compare normal startup
-    vs hydrated.
+  the `hydrate-app` factory function will look for `window[<name>]` flag
+  to decide if it needs to hydrate. A good way to compare normal startup vs hydrated.
+
+### JavaScript api
+
+Once the script runs, it creates a global object called `bottle`. The `bottle`
+has only a few methods for saving, loading and updating the HTML snapshot. The two
+most important ones to call from your application are:
+
+* `bottle.drink()` - call when your application has initialized and rendered itself.
+* `bottle.refill()` - call every time you want to take DOM snapshot. This snapshot
+  will be rendered on the next page load.
 
 ### Small print
 
