@@ -2,7 +2,7 @@
   "name": "hydrate-app",
   "description": "Quick app pre-loading using saved HTML snapshot",
   "main": "src/main.js",
-  "version": "0.0.0-semantic-release",
+  "version": "0.0.0-development",
   "scripts": {
     "test": "npm run lint",
     "lint": "standard --verbose --fix *.js src/*.js cypress/integration/*.js",
@@ -42,7 +42,7 @@
     "grunt-gh-pages": "1.0.0",
     "grunty": "0.3.0",
     "pre-git": "3.12.0",
-    "semantic-release": "^4.3.5",
+    "semantic-release": "^6.3.2",
     "standard": "8.6.0",
     "tiny-overlay": "1.0.0",
     "tiny-toast": "1.2.0",
