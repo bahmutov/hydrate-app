@@ -56,9 +56,39 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict'
 
+	var isGoodEnvironment = __webpack_require__(1)
+	var bottle = isGoodEnvironment()
+	  ? __webpack_require__(2) : __webpack_require__(5)
+	bottle.open()
+	module.exports = bottle
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	function isFunction (x) {
+	  return typeof x === 'function'
+	}
+
+	function isGoodEnvironment () {
+	  return window.localStorage &&
+	    isFunction(window.localStorage.getItem) &&
+	    isFunction(Function.prototype.bind)
+	}
+
+	module.exports = isGoodEnvironment
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	function noop () {}
+
 	var display = (function initDisplay () {
-	  var tinyToast = __webpack_require__(1)
-	  var tinyOverlay = __webpack_require__(2)
+	  var tinyToast = __webpack_require__(3)
+	  var tinyOverlay = __webpack_require__(4)
 
 	  return {
 	    message: tinyToast,
@@ -73,8 +103,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	}())
-
-	function noop () {}
 
 	function getBottle (selectId, verbose, verboseUi) {
 	  var log = verbose ? console.log.bind(console) : noop
@@ -188,12 +216,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return bottle
 	}())
 
-	bottle.open()
+	// you can open a bottle right away
+	// bottle.open()
 	module.exports = bottle
 
 
 /***/ },
-/* 1 */
+/* 3 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -287,7 +316,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 2 */
+/* 4 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -335,6 +364,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = tinyOverlayApi
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	function noop () {}
+	var fakeBottle = {
+	  refill: noop,
+	  drink: noop,
+	  open: noop,
+	  recycle: noop
+	}
+	module.exports = fakeBottle
 
 
 /***/ }
