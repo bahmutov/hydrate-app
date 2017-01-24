@@ -9,8 +9,8 @@
 
 [demo](http://glebbahmutov.com/hydrate-app/)
 
-See a larger Vue.js [demo](http://glebbahmutov.com/hydrate-vue-todo/) and its 
-[source](https://github.com/bahmutov/hydrate-vue-todo). 
+See a larger Vue.js [demo](http://glebbahmutov.com/hydrate-vue-todo/) and its
+[source](https://github.com/bahmutov/hydrate-vue-todo).
 See the hydration in action on my own website [glebbahmutov.com](http://glebbahmutov.com/),
 notice how the list of projects when you
 refresh appears almost instantly, while the main application still loads.
@@ -40,7 +40,7 @@ the content after the element from shifting.
 * `id` - the ID of the web application element to replace
 * `verbose` - if set to "true" prints console log messages
 * `verbose-ui` - show user popups
-* `on` - optional. If exists and set to string `<name>`, 
+* `on` - optional. If exists and set to string `<name>`,
   the `hydrate-app` factory function will look for `window[<name>]` flag
   to decide if it needs to hydrate. A good way to compare normal startup vs hydrated.
 
@@ -116,9 +116,9 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-[hydrate-app-icon]: https://nodei.co/npm/hydrate-app.png?downloads=true
+[hydrate-app-icon]: https://nodei.co/npm/hydrate-app.svg?downloads=true
 [hydrate-app-url]: https://npmjs.org/package/hydrate-app
-[hydrate-app-ci-image]: https://travis-ci.org/bahmutov/hydrate-app.png?branch=master
+[hydrate-app-ci-image]: https://travis-ci.org/bahmutov/hydrate-app.svg?branch=master
 [hydrate-app-ci-url]: https://travis-ci.org/bahmutov/hydrate-app
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
